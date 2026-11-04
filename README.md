@@ -1,6 +1,6 @@
 # 내 컴퓨터에 개발자용 작업실 꾸미기
 
-올인원 1차 미션의 실습 기록입니다. Ubuntu 터미널에서 파일과 권한을 다뤄 보고, Docker로 내가 만든 웹 페이지를 실행했습니다. **STEP 7까지 실습을 완료**했습니다. 다음은 **STEP 8 제출 검증**입니다.
+올인원 1차 미션의 실습 기록입니다. Ubuntu 터미널에서 파일과 권한을 다뤄 보고, Docker로 내가 만든 웹 페이지를 실행했습니다. **STEP 1~8 실습과 제출 검증을 완료**했습니다.
 
 ## 실습 환경
 
@@ -20,7 +20,7 @@
 - [x] STEP 5. 바인드 마운트로 HTML 수정 반영 확인
 - [x] STEP 6. 컨테이너를 삭제한 뒤에도 볼륨의 파일이 남는지 확인
 - [x] STEP 7. Git 설정과 GitHub 저장소 연동
-- [ ] STEP 8. 제출용 로그와 캡처 연결 및 최종 검증
+- [x] STEP 8. 제출용 로그와 캡처 연결 및 최종 검증
 
 ## STEP 1. 개발 환경 확인
 
@@ -160,12 +160,32 @@ docker ps --filter name=kdt-web-bind
 
 `main`에서 첫 커밋(`6b4ab01`)을 만들고 GitHub에 푸시했습니다. 저장소에서 `Dockerfile`, `README.md`, `site/`가 표시되는 것을 확인했습니다.
 
-## 증거와 다음 작업
+## STEP 8. 제출 전 다시 실행하기
 
-현재 화면 증거는 노션의 **제출 증빙 모음 · 대조 후 정리본**에 있습니다. STEP 5 브라우저 화면은 페이지 맨 아래의 **8081 수정 전·후 교정본**을 사용합니다. 최종 제출 전에는 캡처를 `evidence/screenshots/`에, 실제 명령과 출력은 `evidence/logs/`에 넣고 이 README에서 상대 경로로 연결합니다.
+Docker Desktop을 켠 뒤, 이 저장소의 폴더를 VS Code에서 열고 PowerShell에서 실행합니다. 폴더 위치는 PC마다 달라도 됩니다. 아래 명령은 프로젝트 폴더를 기준으로 동작합니다.
 
-- [STEP 6 실행 기록](evidence/logs/step-06-volume-persistence.md)
-- [STEP 7 실행 기록](evidence/logs/step-07-github.md)
-STEP 7의 푸시 성공 화면과 README 갱신 전 화면은 노션 체크리스트에 보관했습니다.
+```powershell
+docker build -t kdt-workspace:1.0 .
+docker run -d --name kdt-web-verify -p 127.0.0.1:8082:80 kdt-workspace:1.0
+docker ps --filter name=kdt-web-verify
+```
 
-다음은 **STEP 8**입니다. 제출할 증빙 링크를 열어 보고, README의 실행 절차를 따라 프로젝트가 재현되는지 확인합니다.
+컨테이너가 `Up`이면 브라우저에서 `http://127.0.0.1:8082`를 엽니다. 이름이나 포트가 이미 사용 중이면 다른 컨테이너 이름과 호스트 포트를 지정합니다. Windows에서 실행한 결과와 GitHub 로그아웃 상태에서 README를 연 화면을 아래에 연결했습니다.
+
+## 요구사항 검증표
+
+| 단계 | 로그 | 캡처 | 결과 |
+|---|---|---|---|
+| 1. 환경 확인 | [실행 기록](evidence/logs/step-01-environment.md) | [화면](evidence/screenshots/step-01-environment.png) | PowerShell·Git·Docker 버전 확인 |
+| 2. 파일과 권한 | [실행 기록](evidence/logs/step-02-terminal-permissions.md) | [화면](evidence/screenshots/step-02-permissions.png) | 파일과 폴더 권한 변경 확인 |
+| 3. Docker 기본 운영 | [실행 기록](evidence/logs/step-03-docker-basics.md) | [화면](evidence/screenshots/step-03-hello-world.png) | hello-world 출력과 종료 상태 확인 |
+| 4. 웹 페이지 실행 | [실행 기록](evidence/logs/step-04-web.md) | [화면](evidence/screenshots/step-04-web-8080.png) | 8080에서 직접 만든 페이지 확인 |
+| 5. 바인드 마운트 | [실행 기록](evidence/logs/step-05-bind-mount.md) | [화면](evidence/screenshots/step-05-before.png) | 같은 8081에서 수정 전후 비교 |
+| 6. 볼륨 영속성 | [실행 기록](evidence/logs/step-06-volume-persistence.md) | [화면](evidence/screenshots/step-06-volume.png) | 첫 컨테이너 삭제 후 파일 다시 읽기 |
+| 7. GitHub 연동 | [실행 기록](evidence/logs/step-07-github.md) | [화면](evidence/screenshots/step-07-push.png) | main 푸시 및 파일 확인 |
+| 8. 제출 검증 | [실행 기록](evidence/logs/step-08-verification.md) | [화면](evidence/screenshots/step-08-web-8082.png) | 재빌드와 공개 열람 확인 |
+
+
+추가 화면 · [STEP 5 수정 후](evidence/screenshots/step-05-after.png), [STEP 8 터미널](evidence/screenshots/step-08-terminal.png), [STEP 8 로그아웃 상태 GitHub](evidence/screenshots/step-08-public-github.png)
+
+[GitHub 제출 링크](https://github.com/contest-p/yeons-workspace)
