@@ -144,6 +144,11 @@ docker ps --filter name=kdt-web-bind
 
 브라우저에서 `http://127.0.0.1:8081`을 열고, `site/index.html`의 문장을 수정해 저장한 뒤 같은 주소에서 새로고침했습니다. **이미지 재빌드나 컨테이너 재시작 없이** 새 문장이 표시됐습니다.
 
+| 두 번째 수정 전 | 두 번째 수정 후 |
+|---|---|
+| [8081 브라우저 화면](evidence/screenshots/05-before-8081.png) | [8081 브라우저 화면](evidence/screenshots/05-after-8081.png) |
+| 바운드 마운트로 수정한 문장이 반영됐습니다. | 같은 컨테이너에서 두 번째 수정이 반영됨 너무 어렵다. |
+
 ## 트러블슈팅
 
 | 문제 | 원인 확인 | 해결과 결과 |
@@ -158,7 +163,7 @@ docker ps --filter name=kdt-web-bind
 
 ## STEP 7. GitHub에 프로젝트 올리기
 
-`main`에서 첫 커밋(`6b4ab01`)을 만들고 GitHub에 푸시했습니다. 저장소에서 `Dockerfile`, `README.md`, `site/`가 표시되는 것을 확인했습니다.
+`main`에서 첫 커밋(`6b4ab01`)을 만들고 GitHub에 푸시했습니다. 저장소에서 `Dockerfile`, `README.md`, `site/`가 표시되는 것을 확인했습니다. Git은 내 컴퓨터에서 변경 이력을 관리하고, GitHub는 그 이력을 원격 저장소에 올려 공유하는 데 사용합니다.
 
 ## STEP 8. 제출 전 다시 실행하기
 
