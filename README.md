@@ -78,6 +78,8 @@ ls -ld note.txt demo-dir
 
 권한 숫자는 **소유자, 그룹, 기타 사용자** 순서입니다. 읽기 `r=4`, 쓰기 `w=2`, 실행·경로 통과 `x=1`을 더합니다. 예를 들어 디렉토리 권한의 `5`는 목록을 읽고 그 경로를 통과할 수 있다는 뜻입니다.
 
+명령과 실제 출력은 [파일 생성·복사·목록·권한 변경 원본](evidence/screenshots/step-02-files-full.png)과 [이름 변경·삭제 및 권한 전후 원본](evidence/screenshots/step-02-permissions.png)에서 확인할 수 있습니다. `mkdir`, `touch`, `cp`, `mv`, `rm`은 성공하면 보통 출력이 없으므로 뒤이어 실행한 `pwd`, `ls`, `cat` 결과로 확인했습니다. 원본에서는 숨김 파일을 처음에 `,hidden-note`로 잘못 생성했다가 `.hidden-note`로 고쳤습니다.
+
 ## STEP 3. Docker 기본 운영
 
 PowerShell에서 `docker info`의 `Server Version: 29.9.2`를 확인했습니다. `hello-world`는 메시지를 출력한 뒤 정상 종료되어 `docker ps -a`에 `Exited (0)`으로 표시됐습니다.
@@ -114,6 +116,12 @@ docker logs kdt-attach-2
 docker stop kdt-ubuntu
 docker ps -a
 ```
+
+| 확인 항목 | 명령과 출력 캡처 |
+|---|---|
+| Docker 엔진 점검 | [docker info 명령·클라이언트](evidence/screenshots/step-03-info-client.png), [서버 응답](evidence/screenshots/step-03-info-server.png) |
+| 이미지 다운로드·목록, Ubuntu 내부 명령, exec 종료 후 유지 | [docker pull·images·exec·ps](evidence/screenshots/step-03-images-exec.png) |
+| 리소스, attach 종료, 로그, 중지 전후 목록 | [docker stats·attach·logs·stop·ps -a](evidence/screenshots/step-03-stats-attach-stop.png) |
 
 ## STEP 4. 직접 만든 웹 페이지 실행
 
@@ -164,6 +172,14 @@ docker ps --filter name=kdt-web-bind
 ## STEP 7. GitHub에 프로젝트 올리기
 
 `main`에서 첫 커밋(`6b4ab01`)을 만들고 GitHub에 푸시했습니다. 저장소에서 `Dockerfile`, `README.md`, `site/`가 표시되는 것을 확인했습니다. Git은 내 컴퓨터에서 변경 이력을 관리하고, GitHub는 그 이력을 원격 저장소에 올려 공유하는 데 사용합니다.
+
+처음에 `git init -b main`으로 이 저장소의 초기 브랜치를 직접 지정했습니다. 기록된 `init.defaultbranch=master`는 브랜치 이름을 생략하고 새 저장소를 만들 때 사용하는 기본값입니다. 이 저장소의 현재 브랜치는 `main`이고 원격 추적 대상은 `origin/main`입니다. 사용자 이름과 이메일을 가린 설정 출력은 [Git 설정 실행 기록](evidence/logs/step-07-github.md)에 있습니다.
+
+VS Code의 계정 메뉴에서 GitHub 로그인 상태를 확인했고, 소스 제어 그래프에서 로컬·원격 브랜치와 커밋 이력을 확인했습니다.
+
+| GitHub 로그인 상태 | VS Code 저장소 연동 |
+|---|---|
+| ![VS Code GitHub 계정 메뉴](evidence/screenshots/step-07-vscode-github-account.png) | [소스 제어의 main·origin/main과 커밋 이력](evidence/screenshots/step-07-vscode-repository.png) |
 
 ## STEP 8. 제출 전 다시 실행하기
 

@@ -36,3 +36,19 @@ docker ps -a
 
 exec 안의 exit는 별도 Bash를 종료했다. attach로 연결한 주 프로세스 Bash의 exit는 컨테이너를 종료했다. 엔진 연결 오류, --no stream 오타, 기존 이름 충돌을 거쳐 성공했다.
 
+## 명령과 출력 원본
+
+- [docker info 명령과 클라이언트 정보](../screenshots/step-03-info-client.png)
+- [docker info 서버 정보 및 당시 명령 오류](../screenshots/step-03-info-server.png)
+- [Ubuntu 다운로드, docker images, 컨테이너 내부 ls·echo, exec 종료 후 Up](../screenshots/step-03-images-exec.png)
+- [stats, attach, logs, stop과 중지 전후 ps -a](../screenshots/step-03-stats-attach-stop.png)
+
+아래는 이미지 목록 원본에서 옮긴 출력입니다.
+
+```text
+PS C:\Windows\system32> docker images
+IMAGE                ID             DISK USAGE   CONTENT SIZE   EXTRA
+hello-world:latest   c5b7b231f656   25.9kB       9.49kB         U
+ubuntu:latest        6a06111c3b0a   163MB        45.9MB
+```
+
