@@ -175,11 +175,11 @@ docker ps --filter name=kdt-web-bind
 
 처음에 `git init -b main`으로 이 저장소의 초기 브랜치를 직접 지정했습니다. 기록된 `init.defaultbranch=master`는 브랜치 이름을 생략하고 새 저장소를 만들 때 사용하는 기본값입니다. 이 저장소의 현재 브랜치는 `main`이고 원격 추적 대상은 `origin/main`입니다. 사용자 이름과 이메일을 가린 설정 출력은 [Git 설정 실행 기록](evidence/logs/step-07-github.md)에 있습니다.
 
-VS Code의 계정 메뉴에서 GitHub 로그인 상태를 확인했고, 소스 제어 그래프에서 로컬·원격 브랜치와 커밋 이력을 확인했습니다.
+VS Code의 계정 메뉴에서 GitHub 로그인 상태를 확인했고, 내장 터미널에서 `git remote -v`를 실행해 `origin`의 가져오기(fetch)·올리기(push) 주소가 제출용 GitHub 저장소를 가리키는 것을 확인했습니다.
 
 | GitHub 로그인 상태 | VS Code 저장소 연동 |
 |---|---|
-| ![VS Code GitHub 계정 메뉴](evidence/screenshots/step-07-vscode-github-account.png) | [소스 제어의 main·origin/main과 커밋 이력](evidence/screenshots/step-07-vscode-repository.png) |
+| ![VS Code GitHub 계정 메뉴](evidence/screenshots/step-07-vscode-github-account.png) | ![VS Code 내장 터미널의 git remote -v 결과](evidence/screenshots/step-07-vscode-repository.png) |
 
 ## STEP 8. 제출 전 다시 실행하기
 

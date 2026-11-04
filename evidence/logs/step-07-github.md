@@ -32,9 +32,11 @@ main
 2026-11-04에 현재 VS Code에서 직접 확인했습니다.
 
 - [계정 메뉴의 GitHub 로그인 상태](../screenshots/step-07-vscode-github-account.png)
-- [소스 제어 그래프의 main·origin/main 및 커밋 이력](../screenshots/step-07-vscode-repository.png)
+- [VS Code 내장 터미널의 git remote -v 결과](../screenshots/step-07-vscode-repository.png)
 
 계정 캡처는 메뉴 부분을 잘라 저장했습니다. 공개 GitHub 계정명은 로그인 상태 확인을 위해 표시되어 있습니다.
+
+저장소 연동 캡처에는 `origin`의 fetch·push 주소가 모두 `https://github.com/contest-p/yeons-workspace.git`로 표시됩니다.
 
 `git init -b main`으로 이 저장소의 초기 브랜치를 지정했습니다. `init.defaultbranch=master`는 브랜치 옵션을 생략하고 새 저장소를 초기화할 때의 기본값이며, 현재 저장소의 `main`과 별개입니다.
 
