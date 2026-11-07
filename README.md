@@ -587,4 +587,35 @@ docker ps --filter name=kdt-web-verify
 
 추가 화면 · [STEP 5 수정 후](evidence/screenshots/step-05-after.png), [STEP 8 터미널](evidence/screenshots/step-08-terminal.png), [STEP 8 로그아웃 상태 GitHub](evidence/screenshots/step-08-public-github.png)
 
+## 보너스 과제 3. Compose 운영 명령어
+
+앞선 실습에서는 `docker run`을 실행할 때 포트 같은 옵션을 직접 입력했습니다. 이번에는 같은 설정으로 다시 실행할 수 있도록 [compose.yaml](compose.yaml)에 실행 방법을 저장했습니다. Dockerfile은 웹 서버 이미지를 만드는 방법을, `compose.yaml`은 그 이미지를 어떻게 실행할지 정합니다. 여기서는 기존 Dockerfile을 사용하고, 내 PC의 `8083`번을 컨테이너의 `80`번에 연결합니다.
+
+Docker Desktop을 켜고, `compose.yaml`이 있는 폴더에서 PowerShell을 엽니다. 아래 명령은 한 줄씩 실행합니다.
+
+```powershell
+# up은 웹 서버를 켭니다. --build는 실행 전에 이미지를 만들고, -d는 서버를 켜 둔 채 터미널을 돌려줍니다.
+docker compose up -d --build
+
+# ps는 컨테이너의 실행 상태(STATUS)와 연결된 포트(PORTS)를 보여 줍니다.
+docker compose ps
+```
+
+브라우저에서 [실습 페이지](http://127.0.0.1:8083)를 연 다음 아래 명령을 실행합니다.
+
+```powershell
+# logs는 실행 기록을 보여 줍니다. --tail 10은 최근 10줄, web은 확인할 서비스 이름입니다.
+docker compose logs --tail 10 web
+
+# down은 컨테이너를 종료하고 실습용 네트워크와 함께 삭제합니다.
+docker compose down
+
+# ps -a는 멈춘 컨테이너까지 보여 줍니다. 제목 줄만 남으면 정리가 끝난 것입니다.
+docker compose ps -a
+```
+
+실습에서 `Up` 상태와 `8083 → 80` 포트 연결을 확인했습니다. 로그에는 웹 요청을 처리하는 Nginx 프로세스가 시작됐다는 `start worker process`가 표시됐습니다. `down` 이후 `ps -a`에는 제목 줄만 남았습니다.
+
+**상태 확인 루틴**은 `ps`로 실행 상태 확인 → 브라우저 접속 → `logs`로 요청 기록 확인입니다. 로그에 `GET /`와 `200`이 함께 보이면 첫 페이지 요청에 성공한 것입니다.
+
 [GitHub 제출 링크](https://github.com/contest-p/yeons-workspace)
